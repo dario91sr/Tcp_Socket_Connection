@@ -4,6 +4,8 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:convert';
 
+import 'package:hex/hex.dart';
+
 class TcpSocketConnection {
   String _ipAddress;
   int _portAddress;
@@ -191,7 +193,7 @@ class TcpSocketConnection {
   ///  * @param  message  message to send to server
   void sendMessage(dynamic message) async {
     if (_server != null && _connected) {
-      _server.add(message);
+      _server.add(HEX.decode(message));
       _printData("Messaggio inviato: " + message);
     } else {
       print(
